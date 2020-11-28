@@ -1,0 +1,130 @@
+For any function we drop any factors and constants and pay attention to the 
+largest growing term.
+
+1. Runtime for does_string_contain_letter:
+   This is a O(n) function:
+      This function runs a single loop so as the list grows n long it takes n 
+         time to do the calulation and n grows in direct proportion to n 
+         making this a linear runtime.
+
+
+2. Runtime for duplicate_letters:
+   This is a O(n) function:
+      This function is looping over 2 loops ran in sucession (n+n). 
+      Since 2n still grows in direct proportion to n it also is a linear runtime.
+
+
+3. Runtime for duplicate_letters2:
+   This is a O(n2) function:     
+      This function is 2 nested for loops.
+      For any given value of n we carry out n grows at the rate of n*n 
+         which means runtime grows in complexity very quickly.
+
+
+
+Stacks and Queues
+-----------------
+
+
+1. Which would be a better data structure for creating a Stack: a Linked List or 
+   a built-in Python list? Explain why, referencing the runtime requirements for
+   Stack operations (push, pop, etc).
+      
+      Stacks (Last in First Out) can be implemented efficently with both arrays and linked lists:
+
+       
+         The benefits of using an array (Python list):             
+            It is a general purpose structure that is easy and efficient to implement.
+            Memory is saved as it has a constant runtime complexity by adding or 
+               removing items from the end of a list.
+
+         The downside to using an array:
+            Slow operations on searching or adding/removing anywhere but at the
+               end of the list.
+            It's not dynamic and has a fixed memory capacity for the array which
+               can be either too big or too small (memory wastage).
+            The structure is too general purpose in that it will allow you do things you 
+               shouldn't like add items to the beginning of a list.
+            When you insert or delete an element that is not at the end of the array
+               you have to have to shift the other existing elements in the array. 
+
+         The benefits of using a Linked List:
+            It is easy to implement.
+            The linked list has no size limitation meaning there is no memory wastage.
+            A linked list provides fast inserts and deletes at the head of the list.
+        
+         The downside to using a linked list:
+            Requires more memory to store elements as compared to array. 
+               Because each node contains a pointer and it requires extra memory 
+               for itself.
+            Transversing nodes is difficult. We can not randomly access any element as 
+               we do in array by index. We have to traverse all the nodes before it. 
+               So, time required to access a node is large.
+            Reverse Transvering is really difficult.  
+         
+         Both arrays and linked lists have their own advantages/disadvantages therefore
+            it depends on the situation you are dealing with when deciding which structure 
+            to use. However, implementing a stack with a list is fine because adding and
+            removing things from the end of list is constant time.
+
+
+2. Which would be a better data structure for creating a Queue: a Linked List or
+   a built-in Python list? Explain why, referencing the runtime requirements for
+   Queue methods (enqueue, dequeue, etc).
+      
+      It is common to build a Queue (First in First Out) using a doubly-linked list to hold 
+         the data since adding new things to the end of a doubly-linked list is constant time 
+         as is removing things from the beginning of the doubly_linked list.
+
+      You wouldn't want to use a python list as a queue because of runtime complexity. 
+         To remove something from the front of the list you'd have to shift the other existing
+         elements in the array. 
+
+
+Trees
+-----
+
+1. Using the diagram in the instructions, in what order would a Breadth First
+   Search (BFS) algorithm visit each node  until finding burritos (starting at
+   food)?
+
+   List starts off as root node [food]
+   Not food so add its children: [Italian, Indian, Mexican]
+   Pop Italian, not burritos, so add its descendents: [Indian, Mexican, lasagna, pizza]
+   Pop Indian, not burritos, so add its descendents: [Mexican, lasagna, pizza, tikka masala, saag]
+   Pop Mexican, nor burritos, so add its descendents: [lasagna, pizza, tikka masala, saag, burritos, tacos, enchiladas]
+   Pop lasagna, not burritos but doesn't have descendents (leaf node) so move on [pizza, tikka masala, saag, burritos, tacos, enchiladas]
+   Pop pizza, not burritos, so add its descendents: [tikka masala, saag, burritos, tacos, enchiladas, thin crust, Chicago-style, New York-style, Sicilian]
+   Pop tikka masala (leaf node), not burritos: [saag, burritos, tacos, enchiladas, thin crust, Chicago-style, New York-style, Sicilian]
+   Pop saag (leaf node), not burritos: [burritos, tacos, enchiladas, thin crust, Chicago-style, New York-style, Sicilian]
+   Pop burritos. Yay, we found burritos!
+
+2. Using the diagram in the instructions, In what order would a Depth First 
+   Search (DFS) algorithm visit each node until finding Chicago-style (starting
+   at food)? 
+
+    List starts off as root node [food]
+    Not food so add its children [Italian, Indian, Mexican]
+    Pop Mexican, not Chicago-style so add its descendents: [Italian, Indian, burritos, tacos, enchiladas]
+    Pop enchiladas (leaf node), not Chicago-style: [Italian, Indian, burritos, tacos]
+    Pop tacos (leaf node), not Chicago-style: [Italian, Indian, burritos]
+    Pop burritos (leaf node), not Chicago-style: [Italian, Indian]
+    Pop Indian, not Chicago-style so add its children: [Italian, tikka masala, saag]
+    Pop saag (leaf node), not Chicago-style : [Italian, tikka masala]
+    Pop tikka masala (leaf node), not Chicago-style: [Italian]
+    Pop Italian, not Chicago-style add its descendents: [thin crust, Chicago-style, New York-style, Sicilian]
+    Pop Sicilian (leaf node), not Chicago-style: [thin crust, Chicago-style, New York-style]
+    Pop New York-style (leaf node), not Chicago-style: [thin crust, Chicago-style]
+    Pop Chicago-style. Yay, we found Chicago-style!
+
+
+3. How is a binary search tree different from other trees?
+
+   A binary search tree is more restricted than other trees.
+   Each node can only  have 1 piece of data.
+   Each node is only ever going to have 2 children - a left child and right child (leaf nodes).   
+   They have a rule for arrangement. Often used for fast searching. 
+   Every choice we make reduces the number of options by half.
+   For n nodes, we need to search at most O(log n) which is 1,000 nodes in only 10 steps
+      and 1,000,000 nodes in only 20 steps.
+

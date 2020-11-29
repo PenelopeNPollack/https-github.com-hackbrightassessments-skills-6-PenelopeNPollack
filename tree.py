@@ -16,6 +16,22 @@ class Node(object):
 
         return "<Node {data}>".format(data=self.data)
 
+    def find(self, data):
+        """Return node object with this data.
+
+        Start here. Return None if not found.
+        """
+
+        to_visit = [self]
+
+        while to_visit:
+            current = to_visit.pop()
+
+            if current.data == data:
+                return current
+
+            to_visit.extend(current.children)
+
 
 class Tree(object):
     """Tree."""
@@ -29,39 +45,25 @@ class Tree(object):
         return "<Tree root={root}>".format(root=self.root)
 
     def get_nodes(self, data):
-        """ Return a list of nodes with the given data
-        For example::
-            >>> b1 = Node("B")
-            >>> b2 = Node("B")
-            >>> e = Node("E")
-            >>> c = Node("C", [ b1, e])
-            >>> a = Node("A", [b2, c])
-            >>> tree = Tree(a)
-            >>> result = tree.get_nodes("B")
-            >>> result == [b2, b1]
-            True
-            >>> tree.get_nodes("L")
-            []
-        """
+        """ Return a list of nodes with the given data"""
 
-        # TODO: Complete this function
-        to_visit = [self]
+      
+        return self.root.find(data)
 
-        while to_visit:
-            current = to_visit.pop()
-
-            if current.data == data:
-                return current
-
-            to_visit.extend(current.children)
-
-       
-
-        pass
+        
 
 
 if __name__ == "__main__":
     import doctest
+
+    b1 = Node("B")
+    b2 = Node("B")
+    e = Node("E")
+    c = Node("C", [ b1, e])
+    a = Node("A", [b2, c])
+    tree = Tree(a)
+    tree.get_nodes("L")
+    []
 
     print()
     result = doctest.testmod()

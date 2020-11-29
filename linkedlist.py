@@ -20,7 +20,7 @@ class LinkedList(object):
         self.tail = None
 
     def __repr__(self):
-        return "<Linked List head={head}>".format(head=self.head)
+        return "<Linked List head={head}; tail: {tail}>".format(head=self.head, tail=self.tail)
 
     def add_node(self, data):
         """Add node with data to end of list."""
@@ -54,6 +54,11 @@ def only_vowels(llist):
 
 if __name__ == "__main__":
     import doctest
+
+    ll = LinkedList()
+    ll.append("apple")
+    ll.append("berry")
+    ll.append("cherry")
 
     print()
     result = doctest.testmod()

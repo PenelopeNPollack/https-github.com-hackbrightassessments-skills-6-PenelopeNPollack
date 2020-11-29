@@ -35,30 +35,34 @@ class LinkedList(object):
 
         self.tail = new_node
 
+        apple_node = Node("apple")
+        berry_node = Node("berry")
+        cherry_node = Node("cherry")
+
+        apple_node.next = berry_node
+        berry_node.next = cherry_node
+
 
 def only_vowels(llist):
     """ Return a new LinkedList object containing nodes with the strings from
-    the original linked list that start with vowels.
+    the original linked list that start with vowels. """
 
-        >>> llist = LinkedList()
-        >>> llist.add_node("cherry")
-        >>> llist.add_node("berry")
-        >>> llist.add_node("apple")
-        >>> new_llist = only_vowels(llist)
-        >>> new_llist.head.data == "apple"
-        True
-    """
+    # loop through provided linked list and check to see if first character is a vowel
+    # if first character is a vowel, add to new LinkedList
 
-    pass
+    # return the new linked list
+
+    # llist = LinkedList()
+    # llist.add_node("cherry")
+    # llist.add_node("berry")
+    # llist.add_node("apple")
+
+    # new_llist = only_vowels(llist)
+    # new_llist.head.data == "apple"
 
 
 if __name__ == "__main__":
     import doctest
-
-    ll = LinkedList()
-    ll.append("apple")
-    ll.append("berry")
-    ll.append("cherry")
 
     print()
     result = doctest.testmod()

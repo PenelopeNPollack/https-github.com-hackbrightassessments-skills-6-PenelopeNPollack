@@ -60,6 +60,7 @@ class Tree(object):
             >>> tree.get_nodes("L")
             []
         """
+        pass
 
         to_visit = [self.root]
         
@@ -82,8 +83,7 @@ class Tree(object):
 
         return self.root.find(data)
 
-        pass
-        
+              
 if __name__ == "__main__":
     import doctest
 

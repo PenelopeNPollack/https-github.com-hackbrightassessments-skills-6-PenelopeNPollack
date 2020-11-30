@@ -22,10 +22,30 @@ class LinkedList(object):
     def __repr__(self):
         return "<Linked List head={head}; tail: {tail}>".format(head=self.head, tail=self.tail)
 
+    def append(self, data):
+        """Append node with data to end of list."""
+
+        new_node = Node(data)
+
+        if self.head is None:
+            self.head = new_node
+
+        if self.tail is not None:
+            # Did list start as empty?
+            self.tail.next = new_node
+
+        self.tail = new_node
+
+    def __iter__(self):
+        node = self.head
+        while node is not None:
+            yield node
+            node = node.next
+
     def add_node(self, data):
         """Add node with data to end of list."""
 
-        new_node = Node(data)
+        new_node = Node('aeiou')
 
         if self.head is None:
             self.head = new_node
@@ -35,30 +55,19 @@ class LinkedList(object):
 
         self.tail = new_node
 
-        apple_node = Node("apple")
-        berry_node = Node("berry")
-        cherry_node = Node("cherry")
+    def only_vowels(llist):
+        """ Return a new LinkedList object containing nodes with the strings from
+        the original linked list that start with vowels.
+            >>> llist = LinkedList()
+            >>> llist.add_node("cherry")
+            >>> llist.add_node("berry")
+            >>> llist.add_node("apple")
+            >>> new_llist = only_vowels(llist)
+            >>> new_llist.head.data == "apple"
+            True
+        """
 
-        apple_node.next = berry_node
-        berry_node.next = cherry_node
-
-
-def only_vowels(llist):
-    """ Return a new LinkedList object containing nodes with the strings from
-    the original linked list that start with vowels. """
-
-    # loop through provided linked list and check to see if first character is a vowel
-    # if first character is a vowel, add to new LinkedList
-
-    # return the new linked list
-
-    # llist = LinkedList()
-    # llist.add_node("cherry")
-    # llist.add_node("berry")
-    # llist.add_node("apple")
-
-    # new_llist = only_vowels(llist)
-    # new_llist.head.data == "apple"
+        pass
 
 
 if __name__ == "__main__":
